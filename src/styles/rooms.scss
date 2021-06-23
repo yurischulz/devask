@@ -1,0 +1,101 @@
+@import "var";
+
+#page-room {
+  header {
+    padding: 24px;
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  .content {
+    max-width: 1020px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > img {
+      max-height: 45px;
+    }
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .room-title {
+      margin: 32px 0 24px;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        color: $black;
+        font-family: "Poppins", sans-serif;
+        font-size: 24px;
+      }
+
+      span {
+        color: #fff;
+        background-color: $pink-dark;
+        border-radius: 9999px;
+        margin-left: 16px;
+        padding: 8px 16px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+
+    form {
+      textarea {
+        width: 100%;
+        border: 0;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: $white;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        resize: vertical;
+        min-height: 130px;
+      }
+
+      .form-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 16px;
+        .user-info {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+          }
+
+          span {
+            color: $black;
+            margin-left: 8px;
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+
+        > span {
+          color: $gray-dark;
+          font-size: 14px;
+          font-weight: 500;
+
+          button {
+            color: $purple;
+            background-color: transparent;
+            border: 0;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
