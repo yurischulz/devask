@@ -14,6 +14,15 @@
 
 <br>
 
+## 🌐 Demo
+
+- [Firebase Hosting](https://letmeask-be28a.web.app)
+
+### Salas para teste
+
+- Sala aberta: **-Md9Yg41sbUyYdvLCq6F**
+- Sala fechada: **-McqE0WxM1_f0IQxnpUN**
+
 ## 🧪 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -53,8 +62,22 @@ Devask é perfeito para educadores no nicho de desenvolvimento poderem criar sal
 
 Além disto, a identidade visual do projeto foi adaptada, e, também, foi implementado uma série de melhorias e novas funcionalidades, tais como:
 
-- Funcionalidade de resposta pelo admin da sala
+### Funcionalidades adicionadas
+
+#### Geral
+
 - Alterado as tags `<textarea />` para o componente `<MarkdownEditor />` do pacote **[@uiw/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)**, possibilitando que os usuários insiram códigos com highlight em suas perguntas e respostas
+- Inserido ícone animado nas perguntas marcadas como _highlighted_, sinalizando que algo está sendo digitado
+
+#### Admin
+
+- Inserir nova resposta ao clicar no ícone/botão de marcar pergunta como _highlighted_
+- Ao inserir uma resposta, o ícone/botão _highlighted_ é alterado para o ícone de edição
+- Ao clicar no ícone de edição exibe o componente `<MarkdownEditor />` com a resposta previamente enviada
+
+#### Usuário
+
+- Visualização das respostas inseridas pelo admin, utilizando o componente `<MarkdownPreview />`
 
 ## 🔖 Layout
 

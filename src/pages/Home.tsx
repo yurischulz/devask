@@ -38,7 +38,8 @@ export function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (roomRef.val().endedAt) {
-      // -McqE0WxM1_f0IQxnpUN
+      // Sala fechada: -McqE0WxM1_f0IQxnpUN
+      // Sala aberta: -Md9Yg41sbUyYdvLCq6F
       openModal();
       return;
     }

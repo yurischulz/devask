@@ -1,11 +1,11 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
-import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
+import editImg from '../assets/images/edit.svg';
 import modalImg from '../assets/images/modal-delete.svg';
 
 import { useRoom } from '../hooks/useRoom';
@@ -19,6 +19,7 @@ import { RoomCode } from '../components/RoomCode';
 import '../styles/rooms.scss';
 import '../styles/question.scss';
 import '../styles/modal.scss';
+import { AnswerBox } from '../components/AnswerBox';
 
 type RoomParams = {
   id: string;
@@ -30,6 +31,7 @@ export function RoomAdmin() {
   const roomId = params.id;
   const { questions, title } = useRoom(roomId);
   const { modalStyles, modalIsOpen, setIsOpen, openModal } = useModal();
+  const [answerContent, setAnswerContent] = useState<string | undefined>('');
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
@@ -44,8 +46,9 @@ export function RoomAdmin() {
     setIsOpen(false);
   }
 
-  async function handleCheckQuestionAnswered(questionId: string) {
+  async function handleSendQuestionAnswer(questionId: string, answerContent: string | undefined) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      answerContent: answerContent,
       isAnswered: true
     });
   }
@@ -54,6 +57,18 @@ export function RoomAdmin() {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
       isHighlighted: true
     });
+  }
+
+  async function handleEditQuestion(questionId: string, isEditing: boolean | undefined) {
+    if (isEditing) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isEditing: false
+      });
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isEditing: true
+      });
+    }
   }
 
   return (
@@ -84,17 +99,11 @@ export function RoomAdmin() {
                   author={question.author}
                   isAnswered={question.isAnswered}
                   isHighlighted={question.isHighlighted}
+                  answerContent={question.answerContent}
+                  page='admin'
                 >
                   {
-                    !question.isAnswered &&
-                    <Fragment>
-                      <button
-                        className="check-button"
-                        type="button"
-                        onClick={() => handleCheckQuestionAnswered(question.id)}
-                      >
-                        <img src={checkImg} alt="Marcar pergunta como respondida" />
-                      </button>
+                    !question.isAnswered ? (
                       <button
                         className="answer-button"
                         type="button"
@@ -102,7 +111,15 @@ export function RoomAdmin() {
                       >
                         <img src={answerImg} alt="Dar destaque a pergunta" />
                       </button>
-                    </Fragment>
+                    ) : (
+                      <button
+                        className="see-answer-button"
+                        type="button"
+                        onClick={() => handleEditQuestion(question.id, question.isEditing)}
+                      >
+                        <img src={editImg} alt="Dar destaque a pergunta" />
+                      </button>
+                    )
                   }
                   <button
                     className="remove-button"
@@ -111,6 +128,16 @@ export function RoomAdmin() {
                   >
                     <img src={deleteImg} alt="Remover pergunta" />
                   </button>
+
+                  {(question.isHighlighted && !question.isAnswered || question.isEditing) &&
+                    <Fragment>
+                      <AnswerBox
+                        answerContent={question.answerContent}
+                        setAnswerContent={setAnswerContent}
+                      />
+                      <button className="button answer-button" onClick={() => handleSendQuestionAnswer(question.id, answerContent)}>Responder</button>
+                    </Fragment>
+                  }
                 </Question>
                 <Modal
                   key={`modal-question.id`}

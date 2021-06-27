@@ -5,6 +5,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
+  position: relative;
 
   & + .question {
     margin-top: 8px;
@@ -17,8 +18,19 @@
       rgba(0, 180, 219, 0.15)
     );
 
+    p {
+      padding-right: 45px;
+    }
+
     footer .user-info span {
       color: $black;
+    }
+
+    .typing {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      width: 60px;
     }
   }
 
