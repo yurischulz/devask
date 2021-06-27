@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { useParams } from "react-router-dom";
+import MarkdownEditor from '@uiw/react-markdown-editor';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
 import logoImg from '../assets/images/logo.svg';
@@ -16,6 +17,14 @@ import { useRoom } from "../hooks/useRoom";
 
 type RoomParams = {
   id: string;
+}
+
+type EditorProps = {
+  display: {
+    maxLine: {
+      text: string;
+    }
+  }
 }
 
 export function Room() {
@@ -83,10 +92,10 @@ export function Room() {
         </div>
 
         <form onSubmit={handleSendQuestion}>
-          <textarea
-            placeholder="O que você quer perguntar?"
-            onChange={event => setNewQuestion(event.target.value)}
+          <MarkdownEditor
             value={newQuestion}
+            onChange={(editor: EditorProps, data: string | undefined, value: string) => setNewQuestion(value)}
+            height={300}
           />
 
           <div className="form-footer">

@@ -1,5 +1,5 @@
 import { Children, ReactNode } from "react";
-import PropTypes from 'prop-types';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 import typingImg from '../assets/images/typing.svg';
 
@@ -31,7 +31,7 @@ export function Question({
 
   return (
     <div className={`question ${isAnswered ? 'answered' : ''} ${isHighlighted ? 'highlighted' : ''}`}>
-      <p>{content}</p>
+      <MarkdownPreview source={content} />
       <footer>
         <div className="user-info">
           <img src={author.avatar} alt={author.name} />
