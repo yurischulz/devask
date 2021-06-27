@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-    <img alt="Devask" src=".github/cover.svg?v=01" />
+    <img alt="Devask" src=".github/cover.svg" />
 </h1>
 
 <br>
