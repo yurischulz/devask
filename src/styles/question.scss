@@ -1,0 +1,86 @@
+@import "var";
+
+.question {
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+
+  & + .question {
+    margin-top: 8px;
+  }
+
+  &.highlighted:not(.answered) {
+    background: linear-gradient(
+      to right,
+      rgba(69, 104, 220, 0.2),
+      rgba(0, 180, 219, 0.15)
+    );
+
+    footer .user-info span {
+      color: $black;
+    }
+  }
+
+  &.answered {
+    background: $gray-light;
+  }
+
+  p {
+    color: $black;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+
+      span {
+        color: $gray-dark;
+        font-size: 14px;
+      }
+    }
+
+    > div {
+      display: flex;
+      gap: 16px;
+    }
+
+    button {
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &.like-button {
+        display: flex;
+        align-items: flex-end;
+        color: $black;
+        gap: 8px;
+
+        &.liked {
+          color: $purple;
+
+          svg path {
+            stroke: $purple;
+          }
+        }
+      }
+
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
+  }
+}

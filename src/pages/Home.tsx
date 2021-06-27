@@ -1,20 +1,25 @@
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
 import { database } from '../services/firebase';
-import { Button } from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
+import { useModal } from '../hooks/useModal';
+
+import { Button } from '../components/Button';
 
 import '../styles/auth.scss';
+import '../styles/modal.scss';
 
 export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState('');
+  const { modalStyles, modalIsOpen, setIsOpen, openModal } = useModal();
 
   async function handleCreateRoom() {
     if (!user) {
@@ -31,6 +36,12 @@ export function Home() {
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
+
+    if (roomRef.val().endedAt) {
+      // -McqE0WxM1_f0IQxnpUN
+      openModal();
+      return;
+    }
 
     if (!roomRef.exists()) {
       alert('Room does not exists.');
@@ -65,6 +76,16 @@ export function Home() {
             <Button type="submit">
               Entrar na sala
             </Button>
+            <Modal
+              isOpen={modalIsOpen}
+              contentLabel="Encerrar sala"
+              style={modalStyles}
+            >
+              <h2>Esta sala já foi encerrada.</h2>
+              <button className="delete-button" onClick={() => setIsOpen(false)}>
+                Fechar
+              </button>
+            </Modal>
           </form>
         </div>
       </main>

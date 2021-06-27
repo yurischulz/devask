@@ -17,6 +17,21 @@
     > img {
       max-height: 45px;
     }
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      button {
+        height: 40px;
+        &:hover {
+          color: $danger;
+          border-color: $danger;
+          background-color: #fff;
+        }
+      }
+    }
   }
 
   main {
@@ -96,6 +111,10 @@
           }
         }
       }
+    }
+
+    .question-list {
+      margin-top: 32px;
     }
   }
 }

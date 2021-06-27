@@ -21,6 +21,12 @@
     margin-right: 8px;
   }
 
+  &.outlined {
+    background-color: #fff;
+    border: 1px solid $purple;
+    color: $purple;
+  }
+
   &:not(:disabled):hover {
     background-color: $purple-hover;
   }
