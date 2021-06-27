@@ -11,7 +11,7 @@
 </p>
 
 <h1 align="center">
-    <img alt="Letmeask" src=".github/cover.svg" />
+    <img alt="Letmeask" src=".github/cover.svg?v=01" />
 </h1>
 
 <br>
