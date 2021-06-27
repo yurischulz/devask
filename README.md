@@ -54,7 +54,7 @@ Devask é perfeito para educadores no nicho de desenvolvimento poderem criar sal
 Além disto, a identidade visual do projeto foi adaptada, e, também, foi implementado uma série de melhorias e novas funcionalidades, tais como:
 
 - Funcionalidade de resposta pelo admin da sala
-- Alterado as tags `<textarea />` para o componente `<MarkdownEditor />` do pacote \*\*[@uiw/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor), possibilitando que os usuários insiram códigos com highlight em suas perguntas e respostas
+- Alterado as tags `<textarea />` para o componente `<MarkdownEditor />` do pacote **[@uiw/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)**, possibilitando que os usuários insiram códigos com highlight em suas perguntas e respostas
 
 ## 🔖 Layout
 
