@@ -47,6 +47,8 @@ Lembrando que será necessário criar uma conta no [Firebase](https://firebase.g
 
 ## 💻 Projeto
 
+Este é um projeto desenvolvido durante a **[Next Level Week Together](https://nextlevelweek.com/)**, apresentada dos dias 20 a 27 de Junho de 2021.
+
 Devask é perfeito para educadores no nicho de desenvolvimento poderem criar salas de Q&A com o seu público, de uma forma muito organizada e democrática.
 
 Além disto, a identidade visual do projeto foi adaptada, e, também, foi implementado uma série de melhorias e novas funcionalidades, tais como:
