@@ -1,4 +1,4 @@
-@import "var";
+@import "../../styles/global";
 
 .question {
   background-color: $white;
@@ -61,6 +61,7 @@
       span {
         color: $gray-dark;
         font-size: 14px;
+        font-weight: 400;
       }
     }
 
