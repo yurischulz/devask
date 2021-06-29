@@ -1,7 +1,7 @@
 module.exports = {
   theme: {
-    styles: './styleguide/styles.js',
-    theme: './styleguide/themes.js'
+    styles: './styleguide/src/styles.js',
+    theme: './styleguide/src/themes.js'
   },
   sections: [
     {
