@@ -1,11 +1,17 @@
-import copyImg from '../assets/images/copy.svg';
+import copyImg from '../../assets/images/copy.svg';
 
-import "../styles/room-code.scss";
+import './styles.scss';
 
 type RoomCodeProps = {
+  /** Código da sala, recebe o id da sala no firebase */
   code: string;
 }
 
+/**
+ * ### Exibição do código da sala.
+ * 
+ * Recebe o ID da sala obtido através do firebase e exibe o componente com o ID obtido.
+ */
 export function RoomCode(props: RoomCodeProps) {
   function copyRoomCodeToClipboard() {
     navigator.clipboard.writeText(props.code);

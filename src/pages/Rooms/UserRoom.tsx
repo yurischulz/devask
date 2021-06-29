@@ -1,19 +1,15 @@
-import { useState, FormEvent } from "react";
-import { useParams } from "react-router-dom";
-import MarkdownEditor from '@uiw/react-markdown-editor';
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import { useState, FormEvent } from 'react';
+import { useParams } from 'react-router-dom';
 
-import logoImg from '../assets/images/logo.svg';
-
-import { Button } from '../components/Button';
-import { Question } from "../components/Quenstion";
-import { RoomCode } from '../components/RoomCode';
-import { useAuth } from "../hooks/useAuth";
-import { database } from "../services/firebase";
-
-import "../styles/rooms.scss";
-import "../styles/question.scss";
-import { useRoom } from "../hooks/useRoom";
+import logoImg from '../../assets/images/logo.svg';
+import { Button } from '../../components/Button/Button';
+import { database } from '../../services/firebase';
+import { MarkdownEditor } from '../../components/MarkdownEditor/MarkdownEditor';
+import { MarkdownPreview } from '../../components/MarkdownPreview/MarkdownPreview';
+import { Question } from '../../components/Question/Question';
+import { RoomCode } from '../../components/RoomCode/RoomCode';
+import { useAuth } from '../../hooks/useAuth';
+import { useRoom } from '../../hooks/useRoom';
 
 type RoomParams = {
   id: string;
@@ -27,7 +23,7 @@ type EditorProps = {
   }
 }
 
-export function Room() {
+export function UserRoom() {
   const { user, signInWithGoogle } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');

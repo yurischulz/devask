@@ -1,31 +1,23 @@
 import { Fragment, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import Modal from 'react-modal';
 
-import logoImg from '../assets/images/logo.svg';
-import deleteImg from '../assets/images/delete.svg';
-import answerImg from '../assets/images/answer.svg';
-import editImg from '../assets/images/edit.svg';
-import modalImg from '../assets/images/modal-delete.svg';
+import answerImg from '../../assets/images/answer.svg';
+import deleteImg from '../../assets/images/delete.svg';
+import editImg from '../../assets/images/edit.svg';
+import modalImg from '../../assets/images/modal-delete.svg';
+import logoImg from '../../assets/images/logo.svg';
 
-import { useRoom } from '../hooks/useRoom';
-import { useModal } from '../hooks/useModal';
-import { database } from '../services/firebase';
+import { useRoom, RoomParams } from '../../hooks/useRoom';
+import { useModal } from '../../hooks/useModal';
+import { database } from '../../services/firebase';
 
-import { Button } from '../components/Button';
-import { Question } from '../components/Quenstion';
-import { RoomCode } from '../components/RoomCode';
+import { Modal } from '../../components/Modal/Modal';
+import { Button } from '../../components/Button/Button';
+import { Question } from '../../components/Question/Question';
+import { RoomCode } from '../../components/RoomCode/RoomCode';
+import { MarkdownEditor, EditorProps } from '../../components/MarkdownEditor/MarkdownEditor';
 
-import '../styles/rooms.scss';
-import '../styles/question.scss';
-import '../styles/modal.scss';
-import { AnswerBox } from '../components/AnswerBox';
-
-type RoomParams = {
-  id: string;
-}
-
-export function RoomAdmin() {
+export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
@@ -131,16 +123,17 @@ export function RoomAdmin() {
 
                   {(question.isHighlighted && !question.isAnswered || question.isEditing) &&
                     <Fragment>
-                      <AnswerBox
-                        answerContent={question.answerContent}
-                        setAnswerContent={setAnswerContent}
+                      <MarkdownEditor
+                        value={question.answerContent}
+                        onChange={(editor: EditorProps, data: string | undefined, value: string) => setAnswerContent(value)}
+                        height={300}
                       />
                       <button className="button answer-button" onClick={() => handleSendQuestionAnswer(question.id, answerContent)}>Responder</button>
                     </Fragment>
                   }
                 </Question>
                 <Modal
-                  key={`modal-question.id`}
+                  key={`modal-${question.id}`}
                   isOpen={modalIsOpen}
                   contentLabel="Encerrar sala"
                   style={modalStyles}

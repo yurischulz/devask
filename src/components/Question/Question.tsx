@@ -1,25 +1,54 @@
-import { Children, ReactNode } from "react";
+import { Children, ReactNode } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
-import typingImg from '../assets/images/typing.svg';
+import typingImg from '../../assets/images/typing.svg';
 
-type QuestionProps = {
-  content: string;
-  answerContent?: string | undefined;
+import './styles.scss';
+
+export type QuestionProps = {
+  /** Dados do usuário obtido através da conta Google */
   author: {
     name: string;
     avatar: string;
   }
-  children?: ReactNode;
-  isAnswered?: boolean;
-  isHighlighted?: boolean;
+  /** Exibe o conteúdo da pergunta */
+  content: string;
+  /** Define o tipo da página */
   page: string;
+  /** Exibe o conteúdo da resposta */
+  answerContent?: string | undefined;
+  /** Componentes recebidos como children */
+  children?: ReactNode;
+  /** Define se a pergunta foi respondida */
+  isAnswered?: boolean;
+  /** Define se a pergunta está sendo respondida */
+  isHighlighted?: boolean;
 }
 
+/**
+ * ### Exibição do card de perguntas.
+ *
+ * Exibe o card de perguntas em três variações:
+ * 
+ * - **Pergunta cadastrada:**
+ * ```
+ * isHighlited: false
+ * isAnswered: false
+ * ```
+ * - **Pergunta sendo respondida:**
+ * ```
+ * isHighlited: true
+ * isAnswered: false
+ * ```
+ * - **Pergunta respondida:**
+ * ```
+ * isHighlited: true
+ * isAnswered: true
+ * ```
+ */
 export function Question({
   content,
   author,
-  answerContent = undefined,
   isAnswered = false,
   isHighlighted = false,
   page,
@@ -31,7 +60,7 @@ export function Question({
 
   return (
     <div className={`question ${isAnswered ? 'answered' : ''} ${isHighlighted ? 'highlighted' : ''}`}>
-      <MarkdownPreview source={content} />
+      <MarkdownPreview source={content} className="wmde-question" />
       <footer>
         <div className="user-info">
           <img src={author.avatar} alt={author.name} />

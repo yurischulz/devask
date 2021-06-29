@@ -32,6 +32,11 @@ type QuestionProps = {
   likeId: string | undefined;
 }
 
+
+export type RoomParams = {
+  id: string;
+}
+
 export function useRoom(roomId: string) {
   const {user} = useAuth();
   const [questions, setQuestions] = useState<QuestionProps[]>([]);
